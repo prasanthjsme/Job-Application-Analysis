@@ -1,17 +1,57 @@
-# Job Application Analysis — SQL + Dashboard
-Portfolio project analyzing 120 synthetic job applications.
-## Features
-- MySQL analysis: status, portal, role, location, monthly trend, response rate, salary, CTE and RANK.
-- Streamlit dashboard: KPIs, filters, charts, records table and CSV export.
+# Job Application Analysis — SQL & Dashboard
+
+A data analytics portfolio project that analyzes job application data using SQL and an interactive dashboard. The project helps track application progress, identify trends, and understand job application performance across different platforms, roles, and locations.
+
+## What I Did
+
+- Created a dataset containing 120 synthetic job application records.
+- Analyzed application status, job portals, roles, companies, locations, and monthly application trends using SQL.
+- Calculated application metrics, positive response rate, and average expected salary.
+- Used SQL aggregations, CASE statements, date functions, HAVING, CTEs, and window functions.
+- Built an interactive dashboard using Python, Pandas, and Streamlit.
+- Added KPI cards, filters, charts, a data table, and CSV export functionality.
+
+## Dashboard Preview
+
+<!-- Add dashboard screenshot here -->
+
+![Job Application Analysis Dashboard](dashboard.png)
+
+## Dashboard Features
+
+- **KPI Metrics:** Total Applications, Positive Responses, Positive Response Rate, Average Expected Salary
+- **Filters:** Date Range, Job Portal, Job Role, Location, Application Status
+- **Charts:** Application Status Distribution, Portal Analysis, Monthly Application Trend, Job Role Analysis
+- **Data Table:** View and explore application records
+- **Export:** Download filtered records as CSV
+
+## Technologies Used
+
+- SQL
+- MySQL
+- Python
+- Pandas
+- Streamlit
+- Plotly
+
 ## Dataset
-`data/job_applications_sample.csv` contains fictional data only.
-## Run Dashboard
-`python -m pip install -r requirements.txt` then `python -m streamlit run app.py`
-## SQL Setup
-Run `sql/01_create_database_table.sql` in MySQL Workbench, import the sample CSV into the table, then run `sql/02_analysis_queries.sql`.
-## Resume description
-**Job Application Analysis | SQL, MySQL, Python, Pandas, Streamlit**
-- Analyzed 120 synthetic job application records using MySQL to track status, role, company, location, portal and monthly trends.
-- Used aggregations, CASE, date functions, HAVING, CTEs and window functions to calculate application metrics and response rates.
-- Built an interactive dashboard with KPI cards, filters, charts and CSV export to explore application patterns.
-Use synthetic/anonymized data in public repositories; do not upload personal job tracker records.
+
+The project uses 120 synthetic job application records containing information such as:
+
+- Company
+- Job Role
+- Location
+- Application Date
+- Job Portal
+- Application Status
+- Experience Level
+- Expected Salary
+
+**Note:** The dataset contains fictional data created for learning and portfolio purposes.
+
+## How to Run
+
+Install the required packages:
+
+```bash
+python -m pip install -r requirements.txt
