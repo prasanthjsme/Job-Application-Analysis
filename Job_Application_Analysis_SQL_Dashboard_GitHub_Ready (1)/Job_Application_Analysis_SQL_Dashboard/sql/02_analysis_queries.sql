@@ -1,0 +1,14 @@
+USE job_application_analysis;
+SELECT COUNT(*) total_applications FROM job_applications;
+SELECT status,COUNT(*) application_count FROM job_applications GROUP BY status ORDER BY application_count DESC;
+SELECT job_portal,COUNT(*) applications FROM job_applications GROUP BY job_portal ORDER BY applications DESC;
+SELECT job_role,COUNT(*) applications FROM job_applications GROUP BY job_role ORDER BY applications DESC;
+SELECT location,COUNT(*) applications FROM job_applications GROUP BY location ORDER BY applications DESC;
+SELECT COUNT(*) total_applications,SUM(CASE WHEN status IN ('Shortlisted','Interview Scheduled') THEN 1 ELSE 0 END) positive_responses,ROUND(100.0*SUM(CASE WHEN status IN ('Shortlisted','Interview Scheduled') THEN 1 ELSE 0 END)/COUNT(*),2) positive_response_rate_pct FROM job_applications;
+SELECT DATE_FORMAT(applied_date,'%Y-%m') application_month,COUNT(*) applications FROM job_applications GROUP BY DATE_FORMAT(applied_date,'%Y-%m') ORDER BY application_month;
+SELECT company_name,COUNT(*) applications FROM job_applications GROUP BY company_name ORDER BY applications DESC;
+SELECT company_name,COUNT(*) application_count FROM job_applications GROUP BY company_name HAVING COUNT(*)>1 ORDER BY application_count DESC;
+SELECT job_role,ROUND(AVG(expected_salary_lpa),2) avg_expected_salary_lpa FROM job_applications WHERE expected_salary_lpa IS NOT NULL GROUP BY job_role ORDER BY avg_expected_salary_lpa DESC;
+SELECT COUNT(*) total,SUM(status='Applied') applied,SUM(status='Rejected') rejected,SUM(status='No Response') no_response,SUM(status='Shortlisted') shortlisted,SUM(status='Interview Scheduled') interviews FROM job_applications;
+SELECT job_portal,applications,positive_responses,RANK() OVER(ORDER BY positive_responses DESC) portal_rank FROM (SELECT job_portal,COUNT(*) applications,SUM(status IN ('Shortlisted','Interview Scheduled')) positive_responses FROM job_applications GROUP BY job_portal) portal_summary;
+WITH portal_metrics AS (SELECT job_portal,COUNT(*) applications,SUM(status IN ('Shortlisted','Interview Scheduled')) positive_responses FROM job_applications GROUP BY job_portal) SELECT job_portal,applications,positive_responses,ROUND(100.0*positive_responses/applications,2) response_rate_pct FROM portal_metrics ORDER BY response_rate_pct DESC;
